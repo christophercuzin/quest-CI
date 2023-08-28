@@ -9,14 +9,15 @@ jobs:
       - 
         name: Check out code
         uses: actions/checkout@v2
+      - 
+        name: Goto client and run tests
+        run: cd client && npm i && npm test
   docker:
     needs: test-front
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - 
-        name: Goto client and run tests
-        run: cd client && npm i && npm test
+      
       - 
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
